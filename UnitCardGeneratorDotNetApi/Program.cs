@@ -16,7 +16,12 @@ namespace UnitCardGeneratorDotNetApi
     {
         public static void Main(string[] args)
         {
-            var host = CreateHostBuilder(args).Build();
+            var host = CreateHostBuilder(args).ConfigureAppConfiguration((hostContext, builder) => { 
+            if (hostContext.HostingEnvironment.IsDevelopment())
+                {
+                    builder.AddUserSecrets<Program>();
+                }
+            } ).Build();
             CreateDbIfNotExists(host);
             host.Run();
         }

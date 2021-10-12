@@ -12,11 +12,14 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using UnitCardGeneratorDotNetApi.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Data.SqlClient;
 
 namespace UnitCardGeneratorDotNetApi
 {
     public class Startup
     {
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+        private string _connectionString = null;
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -27,10 +30,23 @@ namespace UnitCardGeneratorDotNetApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var builder = new SqlConnectionStringBuilder(
+                Configuration.GetConnectionString("DefaultConnection"));
+            builder.Password = Configuration["DbPassword"];
+            _connectionString = builder.ConnectionString;
+
             services.AddControllers();
             services.AddDbContext<CardGeneratorContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(_connectionString));
             services.AddControllersWithViews();
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: MyAllowSpecificOrigins,
+                    builder =>
+                    {
+                        builder.WithOrigins("https://unit-card-generator.web.app/");
+                    });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,6 +67,7 @@ namespace UnitCardGeneratorDotNetApi
             {
                 endpoints.MapControllers();
             });
+            app.UseCors();
         }
     }
 }
