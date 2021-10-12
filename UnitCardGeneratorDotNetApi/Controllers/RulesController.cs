@@ -24,7 +24,7 @@ namespace UnitCardGeneratorDotNetApi.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<RulesDto>> Get()
+        public IEnumerable<RulesDto> Get()
         {
             var list = _db.Rules.Select(x => new RulesDto
             {

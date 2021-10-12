@@ -54,8 +54,8 @@ C:\Users\mplad\source\repos\mpladow\unit-card-generator-dotnetAPI\UnitCardGenera
 C:\Users\mplad\source\repos\mpladow\unit-card-generator-dotnetAPI\UnitCardGeneratorDotNetApi\bin\Debug\netcoreapp3.1\UnitCardGeneratorDotNetApi.dll
 C:\Users\mplad\source\repos\mpladow\unit-card-generator-dotnetAPI\UnitCardGeneratorDotNetApi\bin\Debug\netcoreapp3.1\UnitCardGeneratorDotNetApi.pdb
 C:\Users\mplad\source\repos\mpladow\unit-card-generator-dotnetAPI\UnitCardGeneratorDotNetApi\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll
-C:\Users\mplad\source\repos\mpladow\unit-card-generator-dotnetAPI\UnitCardGeneratorDotNetApi\obj\Debug\netcoreapp3.1\UnitCardGeneratorDotNetApi.csproj.CoreCompileInputs.cache
-C:\Users\mplad\source\repos\mpladow\unit-card-generator-dotnetAPI\UnitCardGeneratorDotNetApi\obj\Debug\netcoreapp3.1\UnitCardGeneratorDotNetApi.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\mplad\source\repos\mpladow\unit-card-generator-dotnetAPI\UnitCardGeneratorDotNetApi\obj\Debug\netcoreapp3.1\UnitCardGeneratorDotNetApi.dll
 C:\Users\mplad\source\repos\mpladow\unit-card-generator-dotnetAPI\UnitCardGeneratorDotNetApi\obj\Debug\netcoreapp3.1\UnitCardGeneratorDotNetApi.pdb
 C:\Users\mplad\source\repos\mpladow\unit-card-generator-dotnetAPI\UnitCardGeneratorDotNetApi\obj\Debug\netcoreapp3.1\UnitCardGeneratorDotNetApi.genruntimeconfig.cache
+C:\Users\mplad\source\repos\mpladow\unit-card-generator-dotnetAPI\UnitCardGeneratorDotNetApi\obj\Debug\netcoreapp3.1\UnitCardGeneratorDotNetApi.csproj.CoreCompileInputs.cache
+C:\Users\mplad\source\repos\mpladow\unit-card-generator-dotnetAPI\UnitCardGeneratorDotNetApi\obj\Debug\netcoreapp3.1\UnitCardGeneratorDotNetApi.MvcApplicationPartsAssemblyInfo.cache

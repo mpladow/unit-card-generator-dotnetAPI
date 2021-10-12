@@ -20,9 +20,11 @@ namespace UnitCardGeneratorDotNetApi
     {
         readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
         private string _connectionString = null;
-        public Startup(IConfiguration configuration)
+        private IWebHostEnvironment _appEnv = null;
+        public Startup(IConfiguration configuration, IWebHostEnvironment appEnv)
         {
             Configuration = configuration;
+            _appEnv = appEnv;
         }
 
         public IConfiguration Configuration { get; }
@@ -30,21 +32,33 @@ namespace UnitCardGeneratorDotNetApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var builder = new SqlConnectionStringBuilder(
-                Configuration.GetConnectionString("DefaultConnection"));
-            builder.Password = Configuration["DbPassword"];
-            _connectionString = builder.ConnectionString;
+            if (_appEnv.IsDevelopment())
+            {
+                var builder = new SqlConnectionStringBuilder(
+                    Configuration.GetConnectionString("DefaultConnection"));
+                builder.Password = Configuration["DbPassword"];
+                _connectionString = builder.ConnectionString;
 
+                services.AddDbContext<CardGeneratorContext>(options =>
+                    options.UseSqlServer(_connectionString));
+
+            }
+            else
+            {
+                services.AddDbContext<CardGeneratorContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            }
             services.AddControllers();
-            services.AddDbContext<CardGeneratorContext>(options =>
-                options.UseSqlServer(_connectionString));
             services.AddControllersWithViews();
             services.AddCors(options =>
             {
-                options.AddPolicy(name: MyAllowSpecificOrigins,
+                options.AddPolicy("allowedSpecificOrigins",
                     builder =>
                     {
-                        builder.WithOrigins("https://unit-card-generator.web.app/");
+                        builder.AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader();
+                        //builder.WithOrigins("https://unit-card-generator.web.app/", "http://localhost:3000/");
                     });
             });
         }
@@ -61,13 +75,13 @@ namespace UnitCardGeneratorDotNetApi
 
             app.UseRouting();
 
+            app.UseCors("allowedSpecificOrigins");
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
-            app.UseCors();
         }
     }
 }

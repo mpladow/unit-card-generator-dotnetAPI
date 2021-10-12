@@ -11,6 +11,7 @@
 using System;
 using System.Reflection;
 
+[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("63c28249-2b7e-4e17-8ab5-2ac7376b336b")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("UnitCardGeneratorDotNetApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
